@@ -67,7 +67,8 @@ var Breq = (function(){
       // Internals
       var xhr = new XMLHttpRequest(),
           abortTimeout = null,
-          protocol = parseProtocol(url);
+          protocol = parseProtocol(url),
+          h = null;// Used by headers
       xhr.open(method, url, async)
       if(data !== u && method.toUpperCase() != 'GET') {
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -87,12 +88,12 @@ var Breq = (function(){
         if(xhr.readyState == 4){
           xhr.onreadystatechange = nf
           if(abortTimeout) { clearTimeout(abortTimeout) }
-          var result = null, error = false;
+          var result = null
           if(goodStatus(xhr, protocol)){
             result = xhr.responseText
             success(result, 'success', xhr)
           } else {
-            error(def(xhr.statusText, null), xhr.status ? 'error' : 'abort', xhr)
+            error(xhr, xhr.status ? 'error' : 'abort', def(xhr.statusText, null))
           }
         }
       }
