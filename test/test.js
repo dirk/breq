@@ -14,7 +14,7 @@ describe('breq', function(){
     Breq.request({
       url: '/post',
       method: 'post',
-      data: 'foo=bar',
+      data: {foo: 'bar'},
       success: function(data, status, xhr){
         expect(data).to.eql('bar')
         expect(status).to.eql('success')

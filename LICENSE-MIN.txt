@@ -1,0 +1,4 @@
+This license applies the minified code generated from the main breq.js file.
+
+// Breq was built by Dirk Gadsden and is MIT licensed.
+// This minified version is released into the public domain.
